@@ -1,3 +1,4 @@
+import json
 import os
 import tempfile
 import shutil
@@ -31,15 +32,27 @@ def get_specollate_model_path(cache_dir: Optional[str] = None) -> str:
     if matches:
         return str(matches[0])
 
+    repo_default_id = "SaeedLab"
     print("Downloading Specollate model from HuggingFace Hub...")
-    path = hf_hub_download(
-        repo_id="SaeedLab/SpeCollate",
-        filename="specollate_model_weights.pt",
+    specollate_config_path = hf_hub_download(
+        repo_id=f"{repo_default_id}/SpeCollate",
+        filename="config.json",
         cache_dir=cache_dir,
-        repo_type="model",
+        repo_type="model"
     )
-    print(f"Specollate model downloaded to {path}")
-    return path
+    ## load file name from config
+    with open(specollate_config_path, 'r') as f:
+        config = json.load(f)
+    model_filename = config.get("model_name", "specollate_model_weights.pt")
+
+    specollate_path = hf_hub_download(
+        repo_id=f"{repo_default_id}/SpeCollate",
+        filename=model_filename,
+        cache_dir=cache_dir,
+        repo_type="model"
+    )
+    print(f"Specollate model downloaded to {specollate_path}")
+    return specollate_path
 
 
 def load_sample_data(cache_dir: Optional[str] = None, use_preprocessed: bool = True) -> Dict[str, str]:
