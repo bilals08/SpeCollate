@@ -1,3 +1,5 @@
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-follow_us-FFD21E?style=flat&logo=huggingface&logoColor=000)](https://huggingface.co/SaeedLab/SpeCollate) [![PyPI - Python Version](https://img.shields.io/pypi/v/specollate?logo=pypi&style=flat&color=blue)](https://pypi.org/project/specollate/) [![Cite Us](https://img.shields.io/badge/Cite%20Us-PLOS%20One-white?style=flat)](https://doi.org/10.1371/journal.pone.0259349) [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgray.svg)](#specollate)
+
 ## SpeCollate
 
 SpeCollate is the first Deep Learning-based peptide-spectrum similarity network. It allows searching a peptide database by generating embeddings for both mass spectra and database peptides. K-nearest neighbor search is performed on a GPU in the embedding space to find the k (usually k=5) nearest peptide for each spectrum.
